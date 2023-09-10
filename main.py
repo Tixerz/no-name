@@ -12,7 +12,7 @@ player = pygame.Surface((10,10))
 player.fill("White")
 playerx= 2
 playery=2
-
+counter2 = 0
 counter = 0 
 def dash_anim(x , y , bool):
     if x != 0 and y != 0 :
@@ -145,16 +145,37 @@ while True:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_s] == 1 :
         if playery+1 < 390 :
-            playery +=2
+            window.blit(player  , (playerx, playery))
+            playery +=1
+            window.blit(player  , (playerx, playery))
+            playery +=1
+            window.blit(player  , (playerx, playery))
     if keys[pygame.K_d] ==1 :
         if playerx+1 < 790 :
-            playerx +=2
+            window.blit(player  , (playerx, playery))
+            playerx +=1
+            window.blit(player  , (playerx, playery))
+            playerx +=1
+            window.blit(player  , (playerx, playery))
     if keys[pygame.K_a] == 1:
         if playerx-1 >0:
-            playerx -=2
+            window.blit(player  , (playerx, playery))
+            playerx -=1
+            window.blit(player  , (playerx, playery))
+            playerx -=1
+            window.blit(player  , (playerx, playery))
     if keys[pygame.K_w] ==1 :
         if playery-1 > 0:
-            playery -=2
+            window.blit(player  , (playerx, playery))
+            playery -=1
+            window.blit(player  , (playerx, playery))
+            playery -=1
+            window.blit(player  , (playerx, playery))
+            
+
+
+
+
     #dash
     counter += 10
  
@@ -167,10 +188,13 @@ while True:
     dash_anim(-6 , 0 , keys[pygame.K_a]and keys[pygame.K_SPACE] == 1)   
     dash_anim(0 , 6 , keys[pygame.K_s]and keys[pygame.K_SPACE] == 1) 
     dash_anim(6 , 0 , keys[pygame.K_d]and keys[pygame.K_SPACE] == 1)
-    dash_anim( 0, -6 , keys[pygame.K_w]and keys[pygame.K_SPACE] == 1)        
-    window.blit(refresh_surface,(0,0))
+    dash_anim( 0, -6 , keys[pygame.K_w]and keys[pygame.K_SPACE] == 1)
+
+    counter2 += 10
+    if counter2 >= 90:
+        window.blit(refresh_surface , (0,0))
+        counter2 = 0
     window.blit(player  , (playerx, playery))
-    
     pygame.display.update()
-    clock.tick(60)
+    clock.tick(90)
 
