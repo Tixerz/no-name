@@ -1,4 +1,6 @@
 import pygame
+from enemy import enemies
+import random
 import math
 from sys import exit
 pygame.init()
@@ -136,7 +138,9 @@ def dash_anim(x , y , bool):
                 playery =10
             counter = 0 
     
-        
+enem1 = enemies(100 , 200)
+choice_list = ["w" , "s" , "d" , "a"]
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT :
@@ -190,10 +194,19 @@ while True:
     dash_anim(6 , 0 , keys[pygame.K_d]and keys[pygame.K_SPACE] == 1)
     dash_anim( 0, -6 , keys[pygame.K_w]and keys[pygame.K_SPACE] == 1)
 
+    choice = random.choice(choice_list)
+    enem1.move(choice , window) 
+
+    if [enem1.x , enem1.y] == [playerx , playery] :
+        exit()
     counter2 += 10
     if counter2 >= 30:
         window.blit(refresh_surface , (0,0))
         counter2 = 0
+
+    
+
+
     window.blit(player  , (playerx, playery))
     pygame.display.update()
     clock.tick(70)
