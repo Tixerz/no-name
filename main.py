@@ -191,10 +191,10 @@ while True:
     dash_anim( 0, -6 , keys[pygame.K_w]and keys[pygame.K_SPACE] == 1)
 
     counter2 += 10
-    if counter2 >= 90:
+    if counter2 >= 30:
         window.blit(refresh_surface , (0,0))
         counter2 = 0
     window.blit(player  , (playerx, playery))
     pygame.display.update()
-    clock.tick(90)
+    clock.tick(70)
 
